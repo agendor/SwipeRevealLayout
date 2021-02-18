@@ -171,7 +171,7 @@ public class SwipeRevealLayout extends ViewGroup {
         super.onFinishInflate();
 
         // get views
-        if (getChildCount() >= 2) {
+        if (getChildCount() > 2) {
             if (mDragEdge == (DRAG_EDGE_LEFT | DRAG_EDGE_RIGHT)) {
                 revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(0), DRAG_EDGE_LEFT));
                 revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(1), DRAG_EDGE_RIGHT));
@@ -180,6 +180,12 @@ public class SwipeRevealLayout extends ViewGroup {
                 revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(1), DRAG_EDGE_BOTTOM));
             }
             mMainView = getChildAt(getChildCount() - 1);
+        } else if (getChildCount() == 2) {
+            if (mDragEdge == DRAG_EDGE_LEFT)
+                revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(0), DRAG_EDGE_LEFT));
+            else
+                revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(0), DRAG_EDGE_RIGHT));
+            mMainView = getChildAt(1);
         } else if (getChildCount() == 1) {
             mMainView = getChildAt(0);
         }
