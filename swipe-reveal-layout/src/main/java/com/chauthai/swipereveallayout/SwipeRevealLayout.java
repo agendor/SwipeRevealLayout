@@ -181,7 +181,7 @@ public class SwipeRevealLayout extends ViewGroup {
             }
             mMainView = getChildAt(getChildCount() - 1);
         } else if (getChildCount() == 2) {
-            currentDragEdge = mDragEdge
+            currentDragEdge = mDragEdge;
             revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(0), mDragEdge));
             mMainView = getChildAt(1);
         } else if (getChildCount() == 1) {
