@@ -181,6 +181,7 @@ public class SwipeRevealLayout extends ViewGroup {
             }
             mMainView = getChildAt(getChildCount() - 1);
         } else if (getChildCount() == 2) {
+            currentDragEdge = mDragEdge
             revealableViewManager.putRevealableView(new RevealableViewModel(getChildAt(0), mDragEdge));
             mMainView = getChildAt(1);
         } else if (getChildCount() == 1) {
@@ -382,6 +383,19 @@ public class SwipeRevealLayout extends ViewGroup {
         if (mDragHelper.continueSettling(true)) {
             ViewCompat.postInvalidateOnAnimation(this);
         }
+    }
+
+    /**
+     * Toggle the panel to show/hide the secondary view
+     *
+     * @param animation true to animate the open motion. {@link SwipeListener} won't be
+     *                  called if is animation is false.
+     */
+    public void toggle(boolean animation) {
+        if (isOpened())
+            close(animation);
+        else
+            open(animation);
     }
 
     /**
